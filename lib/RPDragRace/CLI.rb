@@ -34,13 +34,12 @@ class RPDragRace::CLI
     end
   end 
   
-  
   def list_queens
     puts "Naomi Smalls, Monet Exchange, Monique Heart, Latrice Royale"
   end 
   
   def read_queen(queen)
-    puts "queen - season"
+    puts "queen - season:"
     puts "facts are facts:"
     puts "quotes and jokes:"
     puts "follow queen:"
