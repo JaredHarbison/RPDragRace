@@ -1,6 +1,7 @@
 class RPDragRace::CLI 
   
-  def call 
+  def call
+    RPDragRace::Scraper.new.make_queens
     puts "The library is open! Welcome to Ru Paul's Drag Race info-rama!"
     start
   end 
