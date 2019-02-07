@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/RPDragRace/
+require_relative '../lib/environment/'
 
 RPDragRace::CLI.new.call
