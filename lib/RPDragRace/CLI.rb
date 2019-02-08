@@ -2,9 +2,19 @@ class RPDragRace::CLI
   
   def call
     RPDragRace::Scraper.new.make_queens
-    puts "The library is open! Welcome to Ru Paul's Drag Race info-rama!"
-    start
+    puts "--------    The library is open!     --------"
+    puts "- Welcome to Ru Paul's Drag Race info-rama! -"
+    puts "------ It's time to make your decision ------"
+    list_queens 
   end 
+  
+  def list_queens
+    puts "Latrice Royale "
+    puts "Monet Exchange"
+    puts "Monique Heart"
+    puts "Naomi Smalls"
+    puts "Trinity Taylor"
+  end
   
   def start 
     puts "Would you like to see a list of queens? Type yes or no"
@@ -32,10 +42,6 @@ class RPDragRace::CLI
       puts "What part of yes or no do you not understand?!"
       start
     end
-  end 
-  
-  def list_queens
-    puts "Naomi Smalls, Monet Exchange, Monique Heart, Latrice Royale"
   end 
   
   def read_queen(queen)
