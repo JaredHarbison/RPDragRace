@@ -1,5 +1,5 @@
 class RPDragRace::Queen 
-  attr_accessor :name, :position, :location, :url, :queen_and_season, :facts_are_facts, :quotes_and_jokes, :follow_your_queen
+  attr_accessor :name, :url
   @@all = []
 
   def initialize(name=nil, url=nil)
@@ -10,6 +10,11 @@ class RPDragRace::Queen
 
   def self.all
     @@all
+    puts "Latrice Royale "
+    puts "Monet Exchange"
+    puts "Monique Heart"
+    puts "Naomi Smalls"
+    puts "Trinity Taylor"
   end
 
   def self.find(id)
@@ -22,26 +27,6 @@ class RPDragRace::Queen
       "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt"))
   end
   
-  def queen_and_season
-    @queen_and_season = queen_and_season
-    puts "Naomi Smalls - All Stars 4"
-  end 
-  
-  def facts_are_facts
-    @facts_are_facts = facts_are_facts
-    puts "Real Name: David Heppenstall"
-  end 
-  
-  def quotes_and_jokes
-    @quotes_and_jokes = quotes_and_jokes
-    puts "Check your lipstick before you come for me."
-  end 
-  
-  def follow_your_queen
-    @follow_your_queen = follow_your_queen
-    puts "https://www.instagram.com/naomismalls/?hl=en"
-  end 
-  
-  
+
   
 end 
