@@ -16,13 +16,7 @@ class RPDragRace::Queen
 
   def self.all
     @@all
-    #puts "Latrice Royale"
-    #puts "Monet Exchange"
-    #puts "Monique Heart"
-    #puts "Naomi Smalls"
-    #puts "Trinity Taylor"
-    #puts ""
-    
+
     queen_1 = self.new
     queen_1.name = "Latrice Royale"
     queen_1.quote = "She is large and in charge, chunky, yet funky. Bold and Beautiful baby."
@@ -50,7 +44,5 @@ class RPDragRace::Queen
   def self.find(id)
     self.all[id-1]
   end
-  
-
   
 end 

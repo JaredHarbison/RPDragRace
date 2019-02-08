@@ -9,39 +9,35 @@ def call
   end 
   
   def list_queens
+####something here works but doesn't feel right 
     @queens = RPDragRace::Queen.all
-    @queens.each do |name|
-      puts "#{name}"
+    @queens.each.with_index(1) do |queen, i, name, quote|   
+####something here works but doesn't feel right 
+      puts "#{i}. #{queen.name}"
+      puts "#{queen.quote}"
     end 
       puts ""
   end 
   
   def choose_your_queen
     input = nil 
-    while input != "exit"
+    if input != "exit"
       choose_your_queen_prompt
-      input = gets.strip
-    case input   
-      when "Latrice Royale"
-        puts "She is large and in charge, chunky, yet funky. Bold and Beautiful baby."
-      when "Monet Exchange"
-        puts "Guess who's black in the house, bitch!"
-      when "Monique Heart"
-        puts "Honey, the face, the look, the meme. Miss Monique Heart. Reclaiming my time, reclaiming my crown, RuPaul where's my check at?"
-      when "Naomi Smalls"
-        puts "You can't spell legendary without...leg!"
-      when "Trinity Taylor"
-        puts "Yes! The body is back"
-      else 
-        puts "Try again!"
-      end 
-      puts ""
+      input = gets.strip 
+      choice = RPDragRace::Queen.find(input.to_i)
+      read_queen(choice)
     end 
   end 
   
+  def read_queen(choice)
+    puts ""
+    puts "#{choice.name}"
+    puts "#{choice.quote}"
+  end 
+      
   def choose_your_queen_prompt
     puts "---------     Choose your queen     ---------"
-    puts "------    type her name or type exit   ------"    
+    puts "------  type her number or type exit   ------"    
     puts ""
   end 
   
