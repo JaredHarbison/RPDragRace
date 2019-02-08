@@ -1,6 +1,12 @@
 class RPDragRace::Queen 
   attr_accessor :name, :url
   @@all = []
+  
+  def self.new_from_index_page(q)
+    self.new(
+      q.attr("alt").split('_').join(' '),
+      "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt"))
+  end
 
   def initialize(name=nil, url=nil)
     @name = name
@@ -20,12 +26,6 @@ class RPDragRace::Queen
 
   def self.find(id)
     self.all[id-1]
-  end
-  
-  def self.new_from_index_page(q)
-    self.new(
-      q.attr("alt").split('_').join(' '),
-      "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt"))
   end
   
 

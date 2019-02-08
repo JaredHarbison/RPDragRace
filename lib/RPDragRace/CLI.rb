@@ -3,16 +3,15 @@ class RPDragRace::CLI
 def call
     RPDragRace::Scraper.new.make_queens
     greeting 
-    @queens=RPDragRace::Queen.all 
-    choose_your_queen
-    goodbye
+    @queens=RPDragRace::Queen.all #lists queens 
+    choose_your_queen 
+    goodbye 
   end 
   
   def choose_your_queen
     input = nil 
     while input != "exit"
-      puts "---------     Choose your queen     ---------"
-      puts "------    type her name or type exit   ------"
+      choose_your_queen_prompt
       input = gets.strip
     case input   
       when "Latrice Royale"
@@ -28,13 +27,14 @@ def call
       else 
         puts "Try again!"
       end 
+      puts ""
     end 
   end 
   
-  def your_queen(queen)
+  def choose_your_queen_prompt
+    puts "---------     Choose your queen     ---------"
+    puts "------    type her name or type exit   ------"    
     puts ""
-    puts "#{queen.name}"
-    puts "#{queen.quote}"
   end 
   
   def greeting
@@ -46,7 +46,6 @@ def call
   end 
   
   def goodbye
-    puts ""
     puts "Now, sashay away!"
     puts ""
   end 
