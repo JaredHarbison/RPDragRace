@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     RPDragRace (0.1.0)
+      nokogiri
 
 GEM
   remote: https://rubygems.org/
@@ -36,7 +37,6 @@ PLATFORMS
 DEPENDENCIES
   RPDragRace!
   bundler (~> 2.0)
-  nokogiri
   pry
   rake (~> 10.0)
   rspec

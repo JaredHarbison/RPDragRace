@@ -8,7 +8,7 @@ class RPDragRace::Scraper
     self.get_page.css('.tabber').last.css('.thumbimage')
   end 
   
-######## filter out duplicates before iteration below ########
+######## filter out duplicates below before iteration (.each) ########
 
   def make_queens
     scrape_queens.each do |q|
