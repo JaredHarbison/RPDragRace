@@ -1,7 +1,6 @@
 class RPDragRace::CLI 
   
-def call
-    RPDragRace::Scraper.new.make_queens
+  def call
     greeting 
     list_queens
     choose_your_queen 
@@ -9,10 +8,11 @@ def call
   end 
   
   def list_queens
-####something here works but doesn't feel right 
+####something here works but doesn't feel right#### 
+    RPDragRace::Scraper.new.make_queens
     @queens = RPDragRace::Queen.all
     @queens.each.with_index(1) do |queen, i, name, quote|   
-####something here works but doesn't feel right 
+####something here works but doesn't feel right#### 
       puts "#{i}. #{queen.name}"
       puts "#{queen.quote}"
     end 
@@ -21,26 +21,16 @@ def call
   
   def choose_your_queen
     input = nil 
-    if input != "exit"
+    while input != "exit"
       choose_your_queen_prompt
       input = gets.strip 
       choice = RPDragRace::Queen.find(input.to_i)
       read_queen(choice)
-    end 
+      puts ""
+      puts "----  Would you like to choose another?  ----"
+    end
   end 
-  
-  def read_queen(choice)
-    puts ""
-    puts "#{choice.name}"
-    puts "#{choice.quote}"
-  end 
-      
-  def choose_your_queen_prompt
-    puts "---------     Choose your queen     ---------"
-    puts "------  type her number or type exit   ------"    
-    puts ""
-  end 
-  
+
   def greeting
     puts ""
     puts "--------    The library is open!     --------"
@@ -49,6 +39,18 @@ def call
     puts ""
   end 
   
+  def choose_your_queen_prompt
+    puts "---------     Choose your queen     ---------"
+    puts "------  type her number or type exit   ------"    
+    puts ""
+  end 
+  
+  def read_queen(choice)
+    puts ""
+    puts "#{choice.name}"
+    puts "#{choice.quote}"
+  end 
+      
   def goodbye
     puts "Now, sashay away!"
     puts ""
