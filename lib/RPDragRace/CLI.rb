@@ -3,9 +3,17 @@ class RPDragRace::CLI
 def call
     RPDragRace::Scraper.new.make_queens
     greeting 
-    @queens=RPDragRace::Queen.all #lists queens 
+    list_queens
     choose_your_queen 
     goodbye 
+  end 
+  
+  def list_queens
+    @queens = RPDragRace::Queen.all
+    @queens.each do |name|
+      puts "#{name}"
+    end 
+      puts ""
   end 
   
   def choose_your_queen
