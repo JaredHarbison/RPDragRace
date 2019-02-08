@@ -15,6 +15,7 @@ class RPDragRace::Queen
     puts "Monique Heart"
     puts "Naomi Smalls"
     puts "Trinity Taylor"
+    puts ""
   end
 
   def self.find(id)

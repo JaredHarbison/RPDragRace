@@ -2,18 +2,11 @@ class RPDragRace::CLI
   
 def call
     RPDragRace::Scraper.new.make_queens
-    puts "--------    The library is open!     --------"
-    puts "- Welcome to Ru Paul's Drag Race info-rama! -"
-    puts "------ It's time to make your decision ------"
-    puts ""
-    list_queens 
-    puts ""
-    choose_your_queen
-  end 
-  
-  def list_queens
+    greeting 
     @queens=RPDragRace::Queen.all 
-  end
+    choose_your_queen
+    goodbye
+  end 
   
   def choose_your_queen
     input = nil 
@@ -32,8 +25,6 @@ def call
         puts "You can't spell legendary without...leg!"
       when "Trinity Taylor"
         puts "Yes! The body is back"
-      when "exit"
-        goodbye
       else 
         puts "Try again!"
       end 
@@ -46,8 +37,18 @@ def call
     puts "#{queen.quote}"
   end 
   
+  def greeting
+    puts ""
+    puts "--------    The library is open!     --------"
+    puts "- Welcome to Ru Paul's Drag Race info-rama! -"
+    puts "------ It's time to make your decision ------"
+    puts ""
+  end 
+  
   def goodbye
+    puts ""
     puts "Now, sashay away!"
+    puts ""
   end 
   
 end
