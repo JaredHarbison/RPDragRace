@@ -20,9 +20,11 @@ def call
   end
   
   def choose_your_queen
+    input = nil 
+    while input != "exit"
     puts "---------     Choose your queen     ---------"
-    puts "------------    type her name    ------------"
-    input = gets.strip 
+    puts "------    type her name or type exit   ------"
+    input = gets.strip
     case input
     when "Latrice Royale"
       puts "She is large and in charge, chunky, yet funky. Bold and Beautiful baby."
@@ -33,8 +35,17 @@ def call
     when "Naomi Smalls"
       puts "You can't spell legendary without...leg!"
     when "Trinity Taylor"
-      puts "Yes! The body is back!"
+      puts "Yes! The body is back"
+    when "exit"
+      goodbye
+    else 
+      puts "Try again!"
     end 
+  end 
+end 
+  
+  def goodbye
+    puts "Now, sashay away!"
   end 
   
   def start 
