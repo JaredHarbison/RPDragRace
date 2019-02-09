@@ -30,6 +30,7 @@ class RPDragRace::CLI
       elsif input == "list"
         list_queens
         choose_your_queen_prompt
+####Why does 'exit' puts "I'm not sure..."####
       else  
         puts "I'm not sure what you mean by that"
         puts ""
