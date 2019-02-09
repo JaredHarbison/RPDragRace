@@ -3,6 +3,7 @@ class RPDragRace::CLI
   def call
     greeting 
     list_queens
+    choose_your_queen_prompt
     choose_your_queen 
     goodbye 
   end 
@@ -12,7 +13,6 @@ class RPDragRace::CLI
     RPDragRace::Scraper.new.make_queens
     @queens = RPDragRace::Queen.all
     @queens.each.with_index(1) do |queen, i, name, quote|   
-####something here works but doesn't feel right#### 
       puts "#{i}. #{queen.name}"
       puts "#{queen.quote}"
     end 
@@ -22,12 +22,18 @@ class RPDragRace::CLI
   def choose_your_queen
     input = nil 
     while input != "exit"
-      choose_your_queen_prompt
       input = gets.strip 
-      choice = RPDragRace::Queen.find(input.to_i)
-      read_queen(choice)
-      puts ""
-      puts "----  Would you like to choose another?  ----"
+      if input.to_i > 0 
+        choice = RPDragRace::Queen.find(input.to_i)
+        read_queen(choice)
+        chose_again
+      elsif input == "list"
+        list_queens
+        choose_your_queen_prompt
+      else  
+        puts "I'm not sure what you mean by that"
+        puts ""
+      end 
     end
   end 
 
@@ -42,6 +48,14 @@ class RPDragRace::CLI
   def choose_your_queen_prompt
     puts "---------     Choose your queen     ---------"
     puts "------  type her number or type exit   ------"    
+    puts ""
+  end 
+  
+  def chose_again
+    puts ""
+    puts "----  Would you like to choose another?  ----"
+    puts "- If so type her number. If no type 'exit'. -"
+    puts "----  To see the list again type 'list'. ----"
     puts ""
   end 
   
