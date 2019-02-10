@@ -47,7 +47,7 @@ class RPDragRace::CLI
   end 
   
   def introduction
-    puts "What's your name?"
+    puts "What's your name, squirrel friend?"
     @my_name = gets.strip 
   end 
   
