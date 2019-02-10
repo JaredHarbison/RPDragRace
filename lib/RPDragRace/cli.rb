@@ -1,15 +1,13 @@
 class RPDragRace::CLI 
   
   def call
+    RPDragRace::Scraper.new.make_queens
     introduction 
-    list_queens
-    choose_your_queen 
+    make_your_selection 
     goodbye 
   end 
   
   def list_queens
-####something here works but doesn't feel right#### 
-    RPDragRace::Scraper.new.make_queens
     @queens = RPDragRace::Queen.all
     @queens.each.with_index(1) do |queen, i, name, quote|   
       puts "#{i}. #{queen.name}"
@@ -18,8 +16,9 @@ class RPDragRace::CLI
       puts ""
   end 
   
-  def choose_your_queen
-    choose_your_queen_prompt
+  def make_your_selection
+    list_queens
+    choose_your_queen
     input = nil 
     while input != "exit"
       input = gets.strip 
@@ -29,8 +28,7 @@ class RPDragRace::CLI
         chose_again
       elsif input == "list"
         list_queens
-        choose_your_queen_prompt
-####Why does 'exit' puts "I'm not sure..."####
+        choose_your_queen
       else  
       end 
     end
@@ -49,8 +47,8 @@ class RPDragRace::CLI
     puts ""
   end 
 
-  def choose_your_queen_prompt
-    puts "---------     Choose your queen     ---------"
+  def choose_your_queen
+    puts "------------  Choose your queen  ------------"
     puts "------  type her number or type exit   ------"    
     puts "----  To see the list again type 'list'. ----"
     puts ""
@@ -71,6 +69,7 @@ class RPDragRace::CLI
   end 
       
   def goodbye
+    puts ""
     puts "So it is written, and so it shall be."
     puts "Now #{@my_name}, sashay away!"
     puts ""
@@ -82,4 +81,3 @@ end
 #    puts "What's your name, squirrel friend?"
 #    @my_name = gets.strip 
 #  end 
-  
