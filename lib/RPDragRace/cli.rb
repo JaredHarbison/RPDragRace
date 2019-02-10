@@ -1,9 +1,7 @@
 class RPDragRace::CLI 
   
   def call
-    introduction
-    greeting 
-    choose_your_queen_prompt
+    introduction 
     list_queens
     choose_your_queen 
     goodbye 
@@ -21,6 +19,7 @@ class RPDragRace::CLI
   end 
   
   def choose_your_queen
+    choose_your_queen_prompt
     input = nil 
     while input != "exit"
       input = gets.strip 
@@ -33,27 +32,27 @@ class RPDragRace::CLI
         choose_your_queen_prompt
 ####Why does 'exit' puts "I'm not sure..."####
       else  
-        choose_your_queen_prompt
       end 
     end
   end 
 
-  def greeting
-    puts ""
-    puts "--------    The library is open!     --------"
-    puts "- Welcome to Ru Paul's Drag Race info-rama! -"
-    puts "------ It's time to make your decision ------"
-    puts ""
-  end 
-  
   def introduction
-    puts "What's your name, squirrel friend?"
-    @my_name = gets.strip 
+    puts ""
+    puts "----------  The library is open!   ----------"
+    puts "- Welcome to Ru Paul's Drag Race info-rama! -"
+    puts ""
+    puts "----  What's your name squirrel friend?  ----"
+    @my_name = gets.strip
+    puts ""
+    puts "------------  Well #{@my_name},  ------------"
+    puts "-----  It's time to make your decision  -----"
+    puts ""
   end 
-  
+
   def choose_your_queen_prompt
     puts "---------     Choose your queen     ---------"
     puts "------  type her number or type exit   ------"    
+    puts "----  To see the list again type 'list'. ----"
     puts ""
   end 
   
@@ -72,8 +71,15 @@ class RPDragRace::CLI
   end 
       
   def goodbye
+    puts "So it is written, and so it shall be."
     puts "Now #{@my_name}, sashay away!"
     puts ""
   end 
   
 end
+  
+#  def introduction
+#    puts "What's your name, squirrel friend?"
+#    @my_name = gets.strip 
+#  end 
+  
