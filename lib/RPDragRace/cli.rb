@@ -1,9 +1,10 @@
 class RPDragRace::CLI 
   
   def call
+    introduction
     greeting 
-    list_queens
     choose_your_queen_prompt
+    list_queens
     choose_your_queen 
     goodbye 
   end 
@@ -32,8 +33,7 @@ class RPDragRace::CLI
         choose_your_queen_prompt
 ####Why does 'exit' puts "I'm not sure..."####
       else  
-        puts "I'm not sure what you mean by that"
-        puts ""
+        choose_your_queen_prompt
       end 
     end
   end 
@@ -44,6 +44,11 @@ class RPDragRace::CLI
     puts "- Welcome to Ru Paul's Drag Race info-rama! -"
     puts "------ It's time to make your decision ------"
     puts ""
+  end 
+  
+  def introduction
+    puts "What's your name?"
+    @my_name = gets.strip 
   end 
   
   def choose_your_queen_prompt
@@ -67,7 +72,7 @@ class RPDragRace::CLI
   end 
       
   def goodbye
-    puts "Now, sashay away!"
+    puts "Now #{@my_name}, sashay away!"
     puts ""
   end 
   
