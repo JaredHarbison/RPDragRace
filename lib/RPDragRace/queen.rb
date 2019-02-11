@@ -2,7 +2,7 @@ class RPDragRace::Queen
   attr_accessor :name, :url, :quote
   @@all = []
   
-  def self.queen_page(q)
+  def self.queens_page(q)
     self.new(
       q.attr("alt").split('_').join(' '),
       "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt"))
@@ -15,8 +15,6 @@ class RPDragRace::Queen
   end
 
   def self.all
-    @@all
-
     queen_1 = self.new
     queen_1.name = "Latrice Royale"
     queen_1.quote = "She is large and in charge, chunky, yet funky. Bold and Beautiful baby."
@@ -38,7 +36,8 @@ class RPDragRace::Queen
     queen_5.quote = "Yes! The body is back"
     
     [queen_1, queen_2, queen_3, queen_4, queen_5]
-
+ 
+   
   end
 
   def self.find(id)

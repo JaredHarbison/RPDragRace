@@ -1,4 +1,5 @@
 class RPDragRace::Scraper 
+  @@all = []
   
   def get_page
     Nokogiri::HTML(open("https://rupaulsdragrace.fandom.com/wiki/Category:Queens"))
@@ -12,8 +13,12 @@ class RPDragRace::Scraper
 
   def make_queens
     scrape_queens.each do |q|
-      RPDragRace::Queen.queen_page(q)
-    end
+      RPDragRace::Queen.queens_page(q)
+    end 
   end
+  
+  def self.all
+    @@all
+  end 
   
 end 
