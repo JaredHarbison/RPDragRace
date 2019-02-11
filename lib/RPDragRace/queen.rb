@@ -2,7 +2,7 @@ class RPDragRace::Queen
   attr_accessor :name, :url, :quote
   @@all = []
   
-  def self.new_list(q)
+  def self.queen_page(q)
     self.new(
       q.attr("alt").split('_').join(' '),
       "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt"))

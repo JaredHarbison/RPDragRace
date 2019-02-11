@@ -12,7 +12,7 @@ class RPDragRace::Scraper
 
   def make_queens
     scrape_queens.each do |q|
-      RPDragRace::Queen.new_list(q)
+      RPDragRace::Queen.queen_page(q)
     end
   end
   

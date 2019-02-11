@@ -8,7 +8,7 @@ class RPDragRace::CLI
   end 
   
   def list_queens
-    @queens = RPDragRace::Queen.all
+    @queens = RPDragRace::Queen.all 
     @queens.each.with_index(1) do |queen, i, name, quote|   
       puts "#{i}. #{queen.name}"
       puts "#{queen.quote}"
@@ -76,6 +76,15 @@ class RPDragRace::CLI
   end 
   
 end
+
+#  def print_restaurants(from_number)
+#    puts ""
+#    puts "---------- Restaurants #{from_number} - #{from_number+9} ----------"
+#    puts ""
+#    WorldsBestRestaurants::Restaurant.all[from_number-1, 10].each.with_index(from_number) do |restaurant, index|
+#      puts "#{index}. #{restaurant.name} - #{restaurant.location}"
+#    end
+#  end
   
 #  def introduction
 #    puts "What's your name, squirrel friend?"
