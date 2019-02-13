@@ -1,7 +1,7 @@
 class RPDragRace::Queen 
   attr_accessor :name, :url, :quote
   @@all = []
-  
+
   def self.queens_page(q)
     self.new(
       q.attr("alt").split('_').join(' '),
@@ -15,7 +15,7 @@ class RPDragRace::Queen
   end
 
   def self.all
-    @@all 
+    @@all.select.with_index{|_, i| i.odd?}
   end
 
   def self.find(id)

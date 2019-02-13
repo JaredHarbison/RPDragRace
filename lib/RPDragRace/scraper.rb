@@ -8,8 +8,6 @@ class RPDragRace::Scraper
     self.get_page.css('.tabber').last.css('.thumbimage')
   end 
   
-######## filter out duplicates below before iteration (.each) ########
-
   def make_queens
     scrape_queens.each {|q| RPDragRace::Queen.queens_page(q)}
   end
@@ -19,6 +17,12 @@ class RPDragRace::Scraper
   end 
 
 end 
+
+
+
+  
+######## filter out duplicates below before scrape_queens (.each) ########
+
   
 #.select.with_index{ |_,i| i.odd? }
 #.select {|x| index(x) % n == 0}

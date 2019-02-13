@@ -11,9 +11,8 @@ class RPDragRace::CLI
     @queens = RPDragRace::Queen.all 
     @queens.each.with_index(1) do |queen, i, name, quote|   
       puts "#{i}. #{queen.name}"
-      puts "#{queen.quote}"
+      #puts "#{queen.quote}"
     end 
-      puts ""
   end 
   
   def make_your_selection
@@ -48,6 +47,7 @@ class RPDragRace::CLI
   end 
 
   def choose_your_queen
+    puts ""
     puts "------------  Choose your queen  ------------"
     puts "------  type her number or type exit   ------"    
     puts "----  To see the list again type 'list'. ----"
