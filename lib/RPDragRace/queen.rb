@@ -6,7 +6,7 @@ class RPDragRace::Queen
     self.new(
       q.attr("alt").split('_').join(' '),
       "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt"))
-    end 
+  end 
 
   def initialize(name=nil, url=nil)
     @name = name
@@ -15,29 +15,7 @@ class RPDragRace::Queen
   end
 
   def self.all
-    queen_1 = self.new
-    queen_1.name = "Latrice Royale"
-    queen_1.quote = "She is large and in charge, chunky, yet funky. Bold and Beautiful baby."
-    
-    queen_2 = self.new
-    queen_2.name = "Monet Exchange"
-    queen_2.quote = "Guess who's black in the house, bitch!"
-    
-    queen_3 = self.new
-    queen_3.name = "Monique Heart"
-    queen_3.quote = "Honey, the face, the look, the meme. Miss Monique Heart. Reclaiming my time, reclaiming my crown, RuPaul where's my check at?"
-    
-    queen_4 = self.new
-    queen_4.name = "Naomi Smalls"
-    queen_4.quote = "You can't spell legendary without...leg!"
-    
-    queen_5 = self.new
-    queen_5.name = "Trinity Taylor"
-    queen_5.quote = "Yes! The body is back"
-    
-    [queen_1, queen_2, queen_3, queen_4, queen_5]
- 
-   
+    @@all 
   end
 
   def self.find(id)
@@ -45,3 +23,27 @@ class RPDragRace::Queen
   end
   
 end 
+
+#    queen_1 = self.new
+#    queen_1.name = "Latrice Royale"
+#    queen_1.quote = "She is large and in charge, chunky, yet funky. Bold and Beautiful baby."
+#    
+#    queen_2 = self.new
+#    queen_2.name = "Monet Exchange"
+#    queen_2.quote = "Guess who's black in the house, bitch!"
+    
+#    queen_3 = self.new
+#    queen_3.name = "Monique Heart"
+#    queen_3.quote = "Honey, the face, the look, the meme. Miss Monique Heart. Reclaiming my time, reclaiming my crown, RuPaul where's my check at?"
+#    
+#    queen_4 = self.new
+#    queen_4.name = "Naomi Smalls"
+#    queen_4.quote = "You can't spell legendary without...leg!"
+#    
+#    queen_5 = self.new
+#    queen_5.name = "Trinity Taylor"
+#    queen_5.quote = "Yes! The body is back"
+#    
+#    [queen_1, queen_2, queen_3, queen_4, queen_5]
+ 
+   
