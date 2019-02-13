@@ -1,7 +1,7 @@
 class RPDragRace::CLI 
   
   def call
-    RPDragRace::Scraper.new.make_queens
+    RPDragRace::Scraper.new.get_queens
     introduction 
     make_your_selection 
     goodbye 
@@ -11,7 +11,6 @@ class RPDragRace::CLI
     @queens = RPDragRace::Queen.all 
     @queens.each.with_index(1) do |queen, i, name, quote|   
       puts "#{i}. #{queen.name}"
-      #puts "#{queen.quote}"
     end 
   end 
   
@@ -39,9 +38,9 @@ class RPDragRace::CLI
     puts "- Welcome to Ru Paul's Drag Race info-rama! -"
     puts ""
     puts "----  What's your name squirrel friend?  ----"
-    @my_name = gets.strip
+    @user_name = gets.strip
     puts ""
-    puts "------------  Well #{@my_name},  ------------"
+    puts "------------  Well #{@user_name},  ------------"
     puts "-----  It's time to make your decision  -----"
     puts ""
   end 
@@ -71,7 +70,7 @@ class RPDragRace::CLI
   def goodbye
     puts ""
     puts "So it is written, and so it shall be."
-    puts "Now #{@my_name}, sashay away!"
+    puts "Now #{@user_name}, sashay away!"
     puts ""
   end 
   
