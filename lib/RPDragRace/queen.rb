@@ -6,7 +6,7 @@ class RPDragRace::Queen
     self.new(
       q.attr("alt").split('_').join(' '),
       "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt"))
-  end
+    end 
 
   def initialize(name=nil, url=nil)
     @name = name

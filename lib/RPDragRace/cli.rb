@@ -76,17 +76,3 @@ class RPDragRace::CLI
   end 
   
 end
-
-#  def print_restaurants(from_number)
-#    puts ""
-#    puts "---------- Restaurants #{from_number} - #{from_number+9} ----------"
-#    puts ""
-#    WorldsBestRestaurants::Restaurant.all[from_number-1, 10].each.with_index(from_number) do |restaurant, index|
-#      puts "#{index}. #{restaurant.name} - #{restaurant.location}"
-#    end
-#  end
-  
-#  def introduction
-#    puts "What's your name, squirrel friend?"
-#    @my_name = gets.strip 
-#  end 
