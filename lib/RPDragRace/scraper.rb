@@ -8,6 +8,6 @@ class RPDragRace::Scraper
     list = self.get_page.css('.tabber').last.css('.thumbimage')
     list.each {|q| RPDragRace::Queen.queens_page(q)}
   end
-  
+
 end 
 

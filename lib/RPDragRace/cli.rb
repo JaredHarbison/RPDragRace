@@ -9,8 +9,8 @@ class RPDragRace::CLI
   
   def list_queens
     @queens = RPDragRace::Queen.all 
-    @queens.each.with_index(1) do |queen, i, name, quote|   
-      puts "#{i}. #{queen.name}"
+    @queens.each.with_index(1) do |queen, i, url|   
+      puts "#{i}. #{queen.name}" 
     end 
   end 
   
@@ -64,7 +64,7 @@ class RPDragRace::CLI
   def read_queen(choice)
     puts ""
     puts "#{choice.name}"
-    puts "#{choice.quote}"
+    puts "#{choice.url}"
   end 
       
   def goodbye
