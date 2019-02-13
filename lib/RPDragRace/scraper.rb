@@ -11,9 +11,21 @@ class RPDragRace::Scraper
 ######## filter out duplicates below before iteration (.each) ########
 
   def make_queens
-    scrape_queens.each do |q|
-      RPDragRace::Queen.queens_page(q)
-    end 
+    scrape_queens.each {|q| RPDragRace::Queen.queens_page(q)}
   end
+  
+  def consolidated_queens
+    make_queens.select.with_index{ |_,i| i.odd? }
+  end 
 
 end 
+  
+#.select.with_index{ |_,i| i.odd? }
+#.select {|x| index(x) % n == 0}
+  
+  
+#  def make_queens
+#    scrape_queens.each do |q|
+#      RPDragRace::Queen.queens_page(q)
+#    end 
+#  end
