@@ -3,9 +3,7 @@ class RPDragRace::Queen
   @@all = []
 
   def self.queens_page(q)
-    self.new(
-      q.attr("alt").split('_').join(' '),
-      "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt").split(' ').join('_'))
+    self.new(q.attr("alt").split('_').join(' '), "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt").split(' ').join('_'))
   end 
 
   def initialize(name=nil, url=nil)
@@ -23,7 +21,7 @@ class RPDragRace::Queen
   end
   
   def season
-    @season ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div:nth-child(3) > div").text  
+    @season ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div:nth-child(2) > div").text
   end
   
   def doc
