@@ -1,5 +1,5 @@
 class RPDragRace::Queen 
-  attr_accessor :name, :url, :quotes, :season, :basics
+  attr_accessor :name, :url, :quotes, :season, :statistics
   @@all = []
 
   def self.queens_page(q)
@@ -20,8 +20,8 @@ class RPDragRace::Queen
     self.all[id-1]
   end
   
-  def basics
-    @basics ||= doc.css("#mw-content-text > table.wikitable").text 
+  def statistics
+    @statistics ||= doc.css("#mw-content-text > table.wikitable").text 
   end 
   
   def quotes
