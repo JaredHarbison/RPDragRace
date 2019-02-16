@@ -1,5 +1,5 @@
 class RPDragRace::Queen 
-  attr_accessor :name, :url, :quote
+  attr_accessor :name, :url, :quote, :season
   @@all = []
 
   def self.queens_page(q)
@@ -20,6 +20,16 @@ class RPDragRace::Queen
 
   def self.find(id)
     self.all[id-1]
+  end
+  
+  def season
+    @season ||= doc.search("div.class").text 
+    # @season ||= doc.css("div.c-4.nr.nt ul:nth-child(8) li").text
+    # @best_dish ||= doc.xpath("//div[@class='c-4 nr nt']/ul[3]/li").text
+  end
+  
+  def doc
+    @doc ||= Nokogiri::HTML(open(self.url))
   end
   
 end 
