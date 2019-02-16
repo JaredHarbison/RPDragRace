@@ -23,7 +23,9 @@ class RPDragRace::Queen
   end
   
   def season
-    @season ||= doc.css("div.pi-data-value.pi-font a").text.split[1, 2]
+    @season ||= doc.css("div.pi-data-value").text.split  
+    # deal.name = doc.search("section.features h2").text.strip
+    # @season ||= doc.css("div.pi-data-value.pi-font").text.split
     # @season ||= doc.search("div.class").text 
     # @season ||= doc.css("div.c-4.nr.nt ul:nth-child(8) li").text
     # @best_dish ||= doc.xpath("//div[@class='c-4 nr nt']/ul[3]/li").text
