@@ -64,6 +64,7 @@ class RPDragRace::CLI
   def read_queen(choice)
     puts ""
     puts "#{choice.statistics}"
+    puts "#{choice.biographical}"
   end 
       
   def goodbye
