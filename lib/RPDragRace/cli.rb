@@ -65,8 +65,7 @@ class RPDragRace::CLI
     puts ""
     puts "#{choice.name}"
     puts "#{choice.url}"
-    puts "#{choice.season}" 
-    puts choice.doc 
+    puts "#{choice.season}"
   end 
       
   def goodbye
