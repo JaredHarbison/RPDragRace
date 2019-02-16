@@ -23,12 +23,7 @@ class RPDragRace::Queen
   end
   
   def season
-    @season ||= doc.css("div.pi-data-value").text.split  
-    # deal.name = doc.search("section.features h2").text.strip
-    # @season ||= doc.css("div.pi-data-value.pi-font").text.split
-    # @season ||= doc.search("div.class").text 
-    # @season ||= doc.css("div.c-4.nr.nt ul:nth-child(8) li").text
-    # @best_dish ||= doc.xpath("//div[@class='c-4 nr nt']/ul[3]/li").text
+    @season ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div:nth-child(3) > div").text  
   end
   
   def doc
@@ -36,27 +31,3 @@ class RPDragRace::Queen
   end
   
 end 
-
-#    queen_1 = self.new
-#    queen_1.name = "Latrice Royale"
-#    queen_1.quote = "She is large and in charge, chunky, yet funky. Bold and Beautiful baby."
-#    
-#    queen_2 = self.new
-#    queen_2.name = "Monet Exchange"
-#    queen_2.quote = "Guess who's black in the house, bitch!"
-    
-#    queen_3 = self.new
-#    queen_3.name = "Monique Heart"
-#    queen_3.quote = "Honey, the face, the look, the meme. Miss Monique Heart. Reclaiming my time, reclaiming my crown, RuPaul where's my check at?"
-#    
-#    queen_4 = self.new
-#    queen_4.name = "Naomi Smalls"
-#    queen_4.quote = "You can't spell legendary without...leg!"
-#    
-#    queen_5 = self.new
-#    queen_5.name = "Trinity Taylor"
-#    queen_5.quote = "Yes! The body is back"
-#    
-#    [queen_1, queen_2, queen_3, queen_4, queen_5]
- 
-   
