@@ -65,6 +65,7 @@ class RPDragRace::CLI
     puts ""
     puts "#{choice.statistics}"
     puts "#{choice.biography}"
+    puts "#{choice.quotes}"
   end 
       
   def goodbye
