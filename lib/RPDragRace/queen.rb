@@ -21,9 +21,10 @@ class RPDragRace::Queen
   end
   
   def tryout
-    @tryout ||= doc.css('.Memorable_Quotes').collect do |quote|
-      quote.css('li').text
-    end 
+    #@tryout ||= 
+    #doc.css('.Memorable_Quotes').collect do |quote|
+      #quote.css('li').text
+    #end 
     #doc.search('#mw-content-text > ul > li')
     #doc.at_css("span").next_sibling().text 
     #doc.css("#Memorable_Quotes", "ul li").text
@@ -33,7 +34,7 @@ class RPDragRace::Queen
   end 
   
   def biography
-    @biography ||= doc.css("#mw-content-text > aside > section:nth-child(3)").text 
+    @biography ||= doc.css("#mw-content-text > aside > section:nth-child(3)").text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
   end 
   
   def statistics
