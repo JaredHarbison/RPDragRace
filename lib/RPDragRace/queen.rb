@@ -1,5 +1,5 @@
 class RPDragRace::Queen 
-  attr_accessor :name, :url, :quotes, :season, :statistics, :biography
+  attr_accessor :name, :url, :statistics, :biography, :quotes
   @@all = []
 
   def self.queens_page(q)
@@ -31,11 +31,7 @@ class RPDragRace::Queen
   def quotes
     @quotes ||= doc.css('#mw-content-text > ul > li').text
   end 
-  
-  def season
-    @season ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div:nth-child(2) > div").text
-  end
-  
+
   def doc
     @doc ||= Nokogiri::HTML(open(self.url))
   end
