@@ -29,7 +29,7 @@ class RPDragRace::Queen
   end 
   
   def statistics
-    @statistics ||= doc.css("#mw-content-text > table.wikitable").text
+    @statistics ||= doc.css("#mw-content-text > table.wikitable").text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
   end 
   
   def quotes
