@@ -1,13 +1,14 @@
 class RPDragRace::CLI 
   
   def call
-    RPDragRace::Scraper.new.get_queens
     introduction 
+    list_queens
     make_your_selection 
     goodbye 
   end 
   
   def list_queens
+    RPDragRace::Scraper.new.get_queens
     @queens = RPDragRace::Queen.all 
     @queens.each.with_index(1) do |queen, i, url|   
       puts "#{i}. #{queen.name}" 
@@ -15,7 +16,6 @@ class RPDragRace::CLI
   end 
   
   def make_your_selection
-    list_queens
     choose_your_queen
     input = nil 
     while input != "exit"
@@ -38,9 +38,9 @@ class RPDragRace::CLI
     puts "- Welcome to Ru Paul's Drag Race info-rama! -"
     puts ""
     puts "----  What's your name squirrel friend?  ----"
-    @user_name = gets.strip
+                                  @user_name = gets.strip
     puts ""
-    puts "------------  Well #{@user_name},  ------------"
+    puts "------------  Well #{@user_name}  ------------"
     puts "-----  It's time to make your decision  -----"
     puts ""
   end 
