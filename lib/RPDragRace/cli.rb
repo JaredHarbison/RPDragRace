@@ -6,6 +6,19 @@ class RPDragRace::CLI
     make_your_selection 
     goodbye 
   end 
+
+  def introduction
+    puts ""
+    puts "----------  The library is open!   ----------"
+    puts "- Welcome to Ru Paul's Drag Race info-rama! -"
+    puts ""
+    puts "----  What's your name squirrel friend?  ----"
+                                  @user_name = gets.strip
+    puts ""
+    puts "------------  Well #{@user_name}  ------------"
+    puts "-----  It's time to make your decision  -----"
+    puts ""
+  end 
   
   def list_queens
     RPDragRace::Scraper.new.get_queens
@@ -32,19 +45,6 @@ class RPDragRace::CLI
     end
   end 
 
-  def introduction
-    puts ""
-    puts "----------  The library is open!   ----------"
-    puts "- Welcome to Ru Paul's Drag Race info-rama! -"
-    puts ""
-    puts "----  What's your name squirrel friend?  ----"
-                                  @user_name = gets.strip
-    puts ""
-    puts "------------  Well #{@user_name}  ------------"
-    puts "-----  It's time to make your decision  -----"
-    puts ""
-  end 
-
   def choose_your_queen
     puts ""
     puts "------------  Choose your queen  ------------"
@@ -63,10 +63,20 @@ class RPDragRace::CLI
   
   def read_queen(choice)
     puts ""
+    puts "---------------------------------------------"
+    puts "---------------- STATISTICS  ----------------"
+    puts "---------------------------------------------"
     puts "#{choice.statistics}"
+    puts ""
+    puts "---------------------------------------------"
+    puts "----------------  BIOGRAPHY  ----------------"
+    puts "---------------------------------------------"
     puts "#{choice.biography}"
+    puts ""
+    puts "---------------------------------------------"
+    puts "-----------------  TRIVIA   -----------------"
+    puts "---------------------------------------------"
     puts "#{choice.quotes}"
-    puts "#{choice.tryout}"
   end 
       
   def goodbye
