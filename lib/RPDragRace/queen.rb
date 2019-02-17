@@ -1,5 +1,5 @@
 class RPDragRace::Queen 
-  attr_accessor :name, :url, :statistics, :biography, :quotes
+  attr_accessor :name, :url, :statistics, :biography, :quotes, :tryout 
   @@all = []
 
   def self.queens_page(q)
@@ -19,6 +19,18 @@ class RPDragRace::Queen
   def self.find(id)
     self.all[id-1]
   end
+  
+  def tryout
+    @tryout ||= doc.css('.Memorable_Quotes').collect do |quote|
+      quote.css('li').text
+    end 
+    #doc.search('#mw-content-text > ul > li')
+    #doc.at_css("span").next_sibling().text 
+    #doc.css("#Memorable_Quotes", "ul li").text
+    #page.xpath('//li[@class="clearfix"]').map do |item|
+    #This says, hey Nokogiri, for the page object, return all list items with a class of ‘clearfix’ on them - and lets map and iterate over them.
+    #title = item.at_xpath('.//h2').text.strip
+  end 
   
   def biography
     @biography ||= doc.css("#mw-content-text > aside > section:nth-child(3)").text 
