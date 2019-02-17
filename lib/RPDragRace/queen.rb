@@ -20,19 +20,10 @@ class RPDragRace::Queen
     self.all[id-1]
   end
   
-  def tryout
-    #@tryout ||= 
-    #doc.css('.Memorable_Quotes').collect do |quote|
-      #quote.css('li').text
-    #end 
-    #doc.search('#mw-content-text > ul > li')
-    #doc.at_css("span").next_sibling().text 
-    #doc.css("#Memorable_Quotes", "ul li").text
-    #page.xpath('//li[@class="clearfix"]').map do |item|
-    #This says, hey Nokogiri, for the page object, return all list items with a class of ‘clearfix’ on them - and lets map and iterate over them.
-    #title = item.at_xpath('.//h2').text.strip
-  end 
-  
+  def doc
+    @doc ||= Nokogiri::HTML(open(self.url))
+  end
+   
   def biography
     @biography ||= doc.css("#mw-content-text > aside > section:nth-child(3)").text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
   end 
@@ -45,11 +36,22 @@ class RPDragRace::Queen
     @quotes ||= doc.css('#mw-content-text > ul > li').text
   end 
 
-  def doc
-    @doc ||= Nokogiri::HTML(open(self.url))
-  end
-  
 end 
+
+  
+  def tryout
+    #@tryout ||= 
+    #doc.css('.Memorable_Quotes').collect do |quote|
+      #quote.css('li').text
+    #end 
+    #doc.search('#mw-content-text > ul > li')
+    #doc.at_css("span").next_sibling().text 
+    #doc.css("#Memorable_Quotes", "ul li").text
+    #page.xpath('//li[@class="clearfix"]').map do |item|
+    #This says, hey Nokogiri, for the page object, return all list items with a class of ‘clearfix’ on them - and lets map and iterate over them.
+    #title = item.at_xpath('.//h2').text.strip
+  end 
+ 
 
   #def quotes
     #@quotes ||= doc.css('#mw-content-text > ul > li').text
