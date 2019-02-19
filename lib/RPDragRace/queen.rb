@@ -1,5 +1,5 @@
 class RPDragRace::Queen 
-  attr_accessor :name, :url, :statistics, :biography, :quotes, :tryout 
+  attr_accessor :name, :url, :statistics, :biography, :trivia
   @@all = []
 
   def self.queens_page(q)
@@ -32,8 +32,8 @@ class RPDragRace::Queen
     @statistics ||= doc.css("#mw-content-text > table.wikitable").text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
   end 
   
-  def quotes
-    @quotes ||= doc.css('#mw-content-text > ul:nth-of-type(1) > li').text
+  def trivia
+    @trivia ||= doc.css('#mw-content-text > ul > li').text
   end 
 
 end 

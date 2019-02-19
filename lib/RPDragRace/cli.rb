@@ -74,10 +74,10 @@ class RPDragRace::CLI
     puts "#{choice.biography}"
     puts ""
     puts "---------------------------------------------"
-    puts "------------  MEMORABLE QUOTES  -------------"
+    puts "------------  MEMORABLE TRIVIA  -------------"
     puts "---------------------------------------------"
     puts ""
-    puts "#{choice.quotes}"
+    puts "#{choice.trivia}"
   end 
       
   def goodbye
