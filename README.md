@@ -1,8 +1,6 @@
 # RPDragRace - a beginners CLI project
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/RPDragRace`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to Ru Paul's Drag Race INFO-RAMA! This application pulls information from the RPDR Fandom Wiki for all the queens through Season 11. Tell CompuRu who you are to see a list of queens by season and the queen you choose. This application makes a great tool to host trivia through VH1s selfie breaks during the show.
 
 ## Installation
 
