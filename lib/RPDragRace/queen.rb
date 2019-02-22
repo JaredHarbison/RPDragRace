@@ -4,10 +4,9 @@ class RPDragRace::Queen
 
   def self.queens_page(q)
     I18n.enforce_available_locales = false
-    @url = I18n.transliterate("https://rupaulsdragrace.fandom.com/wiki/#{q.attr("alt")}").split(' ').join('_')
-    #binding.pry #if q.attr("alt")[0..2] == "M"https://rupaulsdragrace.fandom.com/wiki/#{q.attr("alt")}"on"
+    url = I18n.transliterate("https://rupaulsdragrace.fandom.com/wiki/#{q.attr("alt")}").split(' ').join('_')
+    #binding.pry if q.attr("alt")[0..2] == "M"https://rupaulsdragrace.fandom.com/wiki/#{q.attr("alt")}"on"
     self.new(q.attr("alt").split('_').join(' '), url)
-    #self.new(q.attr("alt").split('_').join(' '), "https://rupaulsdragrace.fandom.com/wiki/" + q.attr("alt").split(' ').join('_'))
   end
 
   def initialize(name=nil, url=nil)
