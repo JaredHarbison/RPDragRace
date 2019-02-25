@@ -5,7 +5,6 @@ class RPDragRace::Queen
   def self.queens_page(q)
     I18n.enforce_available_locales = false
     url = I18n.transliterate("https://rupaulsdragrace.fandom.com/wiki/#{q.attr("alt")}").split(' ').join('_')
-    #binding.pry if q.attr("alt")[0..2] == "M"https://rupaulsdragrace.fandom.com/wiki/#{q.attr("alt")}"on"
     self.new(q.attr("alt").split('_').join(' '), url)
   end
 
@@ -15,16 +14,12 @@ class RPDragRace::Queen
     @@all << self
   end
 
-  def self.remove_dup
-    @@all = @@all.select.with_index{|_, i| i.odd?}
-  end
-
   def self.all
-    @@all
+    @@all.select.with_index{|_, i| i.odd?}
   end
 
   def self.find(id)
-    self.remove_dup[id-1]
+    self.all[id-1]
   end
 
   def doc
@@ -40,7 +35,7 @@ class RPDragRace::Queen
   end
 
   def trivia
-    @trivia ||= doc.css('#mw-content-text > ul > li')[0..doc.css('#mw-content-text > ul > li').length-6].text
+    @trivia ||= doc.css('#mw-content-text > ul > li').text
   end
 
 end

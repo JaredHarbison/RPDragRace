@@ -1,3 +1,4 @@
+
 class RPDragRace::CLI
 
   def call
@@ -22,7 +23,7 @@ class RPDragRace::CLI
 
   def list_queens
     RPDragRace::Scraper.new.get_queens
-    @queens = RPDragRace::Queen.remove_dup[0..185]
+    @queens = RPDragRace::Queen.all[0..185]
     @queens.each.with_index(1) do |queen, i, url|
       puts "#{i}. #{queen.name}"
     end

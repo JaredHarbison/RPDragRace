@@ -1,10 +1,11 @@
 require "pry"
 require "nokogiri"
 require "open-uri"
+require "i18n"
 
 module RPDragRace
-  
-end 
+
+end
 
 require_relative 'RPDragRace/scraper'
 require_relative 'RPDragRace/cli'

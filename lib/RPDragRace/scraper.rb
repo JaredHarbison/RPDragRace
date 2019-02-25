@@ -1,5 +1,5 @@
-class RPDragRace::Scraper 
- 
+class RPDragRace::Scraper
+
   def get_page
     Nokogiri::HTML(open("https://rupaulsdragrace.fandom.com/wiki/Category:Queens"))
   end
@@ -10,4 +10,3 @@ class RPDragRace::Scraper
   end
 
 end 
-
