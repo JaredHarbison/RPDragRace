@@ -14,12 +14,16 @@ class RPDragRace::Queen
     @@all << self
   end
 
-  def self.all
+  def self.remove_dup
     @@all.select.with_index{|_, i| i.odd?}
   end
 
+  def self.all
+    @@all
+  end
+
   def self.find(id)
-    self.all[id-1]
+    self.remove_dup[id-1]
   end
 
   def doc
@@ -36,6 +40,7 @@ class RPDragRace::Queen
 
   def trivia
     @trivia ||= doc.css('#mw-content-text > ul > li').text
+    #@trivia ||= doc.css('#mw-content-text > ul > li')[0..doc.css('#mw-content-text > ul > li').length-6].text
   end
 
 end
