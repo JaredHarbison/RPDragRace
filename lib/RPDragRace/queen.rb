@@ -35,7 +35,7 @@ class RPDragRace::Queen
   end
 
   def statistics
-    @statistics ||= doc.css("#mw-content-text > table.wikitable").text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
+    @statistics ||= doc.css("#mw-content-text > table").text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
   end
 
   def trivia
