@@ -63,22 +63,56 @@ class RPDragRace::CLI
   end
 
   def read_queen(choice)
+    puts "@drag_name - #{choice.drag_name}"
+    puts "@real_name - #{choice.real_name}"
+    puts "@site - #{choice.site}"
+    puts "@instagram - #{choice.instagram}"
+    puts "@twitter - #{choice.twitter}"
+    puts "@facebook - #{choice.facebook}"
+    puts "@youtube - #{choice.youtube}"
+    puts "@date_of_birth - #{choice.date_of_birth}"
+    puts "@ethnicity - #{choice.ethnicity}"
+    puts "@primary_image - #{choice.primary_image}"
+#    puts "#{choice.season}"
+#    puts "#{choice.placement} place"
+#    puts "sent home by #{choice.eliminated}"
     puts ""
+#    puts "---------------------------------------------"
+#    puts "---------------- STATISTICS  ----------------"
+#    puts "---------------------------------------------"
+#    puts "#{choice.statistics}"
+#    puts ""
+#    puts "---------------------------------------------"
+#    puts "------------  BIOGRAPHICAL INFO  ------------"
+#    puts "---------------------------------------------"
+#    puts "#{choice.biography}"
+#    puts ""
+#    puts "---------------------------------------------"
+#    puts "------------  MEMORABLE TRIVIA  -------------"
+#    puts "---------------------------------------------"
+#    puts ""
     puts "---------------------------------------------"
-    puts "---------------- STATISTICS  ----------------"
-    puts "---------------------------------------------"
-    puts "#{choice.statistics}"
-    puts ""
-    puts "---------------------------------------------"
-    puts "------------  BIOGRAPHICAL INFO  ------------"
-    puts "---------------------------------------------"
-    puts "#{choice.biography}"
-    puts ""
-    puts "---------------------------------------------"
-    puts "------------  MEMORABLE TRIVIA  -------------"
-    puts "---------------------------------------------"
-    puts ""
-    puts "#{choice.trivia}"
+    puts "@trivia"
+    choice.trivia.each do |trivium|
+      puts "#{trivium}"
+    end
+#    puts "---------------------------------------------"
+#    puts "@trivia_2"
+#    choice.trivia_2.each do |trivium|
+#      puts "#{trivium}"
+#    end
+#    puts "---------------------------------------------"
+#    puts "@trivia_3"
+#    choice.trivia_3.each do |trivium|
+#      puts "#{trivium}"
+#    end
+#    puts "---------------------------------------------"
+#    puts "@trivia_2 - #{choice.trivia_2}"
+#    puts "---------------------------------------------"
+#    puts "@trivia_3 - #{choice.trivia_3}"
+#    puts "---------------------------------------------"
+#    puts "@trivia_4 - #{choice.trivia_4}"
+
   end
 
   def goodbye
@@ -89,3 +123,8 @@ class RPDragRace::CLI
   end
 
 end
+#    puts "Queen.first_name = #{choice.first_name}"
+#    puts "Queen.last_name = #{choice.last_name}"
+#    puts "Queen.username = #{choice.first_name}#{choice.last_name}"
+#    puts "Queen.url = #{choice.url}"
+#    puts "Queen.email = #{choice.first_name}@#{choice.last_name}.com"
