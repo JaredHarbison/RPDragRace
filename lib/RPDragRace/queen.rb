@@ -4,7 +4,8 @@ class RPDragRace::Queen
 
   def self.queens_page(q)
     I18n.enforce_available_locales = false
-    url = I18n.transliterate("https://rupaulsdragrace.fandom.com/wiki/#{q.attr("title")}").split(' ').join('_')
+    queen_url = "https://rupaulsdragrace.fandom.com/wiki/#{q.attr("title")}"
+    url = I18n.transliterate(queen_url).split(' ').join('_')
     self.new(q.attr("title").split('_').join(' '), url.gsub(/\(.+/, ''))
   end
 
@@ -39,59 +40,56 @@ class RPDragRace::Queen
     @biography = hash_two
   end
 
-  def age
-    @age ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(6) > div").text
-  end
-
-  def hometown
-    @hometown ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(7) > div").text
-  end
-
-  def current_city
-    @current_city ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(8) > div").text
-  end
-
-  def season
-    @season ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div > a:nth-child(1)").text
-  end
-
-  def placement
-    @placement ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div:nth-child(3) > div").text
-  end
-
-  def eliminated
-    @eliminated ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div:nth-child(5) > div").text
-  end
-
-  def sent_home_by
-  end
-
-  def challenge_wins
-  end
-
-  def friends
-  end
-
-  def statistics
-    @statistics ||= doc.css("#mw-content-text > table").text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
-  end
-
   def drag_name
-    @drag_name ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(2) > div").text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
+    @drag_name ||= doc.css("#mw-content-text > aside > section:nth-child(3) 
+                           > div:nth-child(2) > div")
+                           .text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
   end
 
   def real_name
-    @real_name ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(3) > div").text.split(' ').join(' ')
+    @real_name ||= doc.css("#mw-content-text > aside > section:nth-child(3) 
+                          > div:nth-child(3) > div").text.split(' ').join(' ')
   end
 
-  def ethnicity #### this works!
-    @ethnicity ||= doc.xpath('//*[@data-source="Ethnicity"]/div[@class="pi-data-value pi-font"]/text()').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') }
-    #@ethnicity ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(4) > div").text
+  def hometown  
+    first = doc.xpath('//*[@data-source="Birthplace"]
+                      /*[@class="pi-data-value pi-font"]
+                      /text()').text
+    second = doc.xpath('//*[@data-source="Hometown"]
+                      /*[@class="pi-data-value pi-font"]
+                      /text()').text
+    @hometown 
+      if first === ""
+        second
+      else 
+        first 
+      end 
   end
 
-  def date_of_birth #### this is not pulling when ethnicity pulls DOB
-    @date_of_birth ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(5) > div").text
+  def current_city
+    @current_city ||= doc.xpath('//*[@data-source="Current City"]
+                                /*[@class="pi-data-value pi-font"]
+                                /text()').text
+  end 
+
+  def ethnicity 
+    @ethnicity ||= doc.xpath('//*[@data-source="Ethnicity"]
+                            /div[@class="pi-data-value pi-font"]
+                            /text()').map { |e| e.text.split(' ').join(' ').gsub(/[^0-9a-z%&!\n\/(). ]/i, '') }
   end
+
+  def date_of_birth 
+    @date_of_birth ||= doc.xpath('//*[@data-source="birth year"]
+                                /div[@class="pi-data-value pi-font"]
+                                /text()').text[0..-3]
+  end
+
+  def age 
+    dob ||= doc.xpath('//*[@data-source="birth year"]
+                                /div[@class="pi-data-value pi-font"]
+                                /text()').text[0..-3]
+    @age = ((Time.now - (Date.parse(dob)).to_time)/31557600).floor
+  end 
 
   def primary_image
     first = doc.css('#mw-content-text > aside > figure > a').attribute('href')
@@ -123,29 +121,43 @@ class RPDragRace::Queen
     end
   end
 
-  def site
-    if doc.xpath('//a[text()="Site"]').attribute('href')
-      @site = "https:" + site
+  def wikipedia
+    if wikipedia = doc.xpath('//a[text()="Wikipedia"]').attribute('href')
+      @wikipedia = "https:" + wikipedia
     end
   end
 
+  def website
+    site = doc.xpath('//a[text()="Site"]').attribute('href')
+    official_site = doc.xpath('//a[text()="Official Website"]').attribute('href')
+    @website = site ? site : official_site
+  end 
+
   def trivia ################## "trivia" top choice!! working perfectly just need to stop before Gallery
-    @trivia =  doc.xpath('//*[@id="Trivia"]/following::*/li').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } #### clean and neat list, not an array
+    @trivia =  doc.xpath('//*[@id="Trivia"]/following::*/li')
+                         .map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
+                         #### clean and neat list, not an array
   end
 
-  #### for trivia, try something modeled after this - /*/p[count(preceding-sibling::divider)=1]
-  #### for trivia, "//ul/li[preceding-sibling::li='doprep' and following-sibling::li='Savior']"
-  def trivia_2 ################ "trivia_2"
-    @trivia_2 = doc.xpath('//*[prececing-sibling::*[@id="Gallery"]]').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } #### clean and neat list, not an array
-  end
+  def seasons 
+    @seasons ||= doc.xpath('//*[@data-source="Season"]/div[@class="pi-data-value pi-font"]/a').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
+  end 
 
-  def trivia_3 ################ "trivia_3"
-    @trivia_3 = doc.xpath('//*[prececing-sibling::*[@id="Gallery"] and following-sibling::*[@id="Trivia"]]').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } #### clean and neat list, not an array
-  end
+  def placement 
+    @placement ||= doc.xpath('//*[@data-source="Place"]/child::text()').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
+  end 
 
-  def trivia_4 ################ "trivia_4" pulls the appropriate section header
-    @trivia_4 = doc.xpath('//*[@id="Trivia"]/following::*/li').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } #### clean and neat list, not an array
-  end
+  def sent_home_by 
+    @sent_home_by ||= doc.xpath('//*[@data-source="Sent home by"]/child::text()').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
+  end 
+
+  def elimination 
+    @eliminiation ||= doc.xpath('//*[@data-source="Eliminated"]//child::text()').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
+  end 
+
+  def challenge_wins 
+    @challenge_wins ||= doc.xpath('//*[@data-source="Challenge Wins"]/child::text()').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
+  end 
 
 end
 
@@ -192,3 +204,44 @@ end
 ####  def last_name
 ####    @real_name[-1] || "Taylor"
 ####  end
+  #### for trivia, try something modeled after this - /*/p[count(preceding-sibling::divider)=1]
+  #### for trivia, "//ul/li[preceding-sibling::li='doprep' and following-sibling::li='Savior']"
+  #def trivia_2 ################ "trivia_2"
+  #  @trivia_2 = doc.xpath('//*[prececing-sibling::*[@id="Gallery"]]').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } #### clean and neat list, not an array
+  #end
+
+  #def trivia_3 ################ "trivia_3"
+  #  @trivia_3 = doc.xpath('//*[prececing-sibling::*[@id="Gallery"] and following-sibling::*[@id="Trivia"]]').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } #### clean and neat list, not an array
+  #end
+
+  #def trivia_4 ################ "trivia_4" pulls the appropriate section header
+  #  @trivia_4 = doc.xpath('//*[@id="Trivia"]/following::*/li').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } #### clean and neat list, not an array
+  #end
+
+
+#  def age
+#    @age ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(6) > div").text
+#  end
+#  def current_city
+#    @current_city ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(8) > div").text
+#  end
+#  def season
+#    @season ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div > a:nth-child(1)").text
+#  end
+#  def placement
+#    @placement ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div:nth-child(3) > div").text
+#  end
+#  def eliminated
+#    @eliminated ||= doc.css("#mw-content-text > aside > section:nth-child(4) > div:nth-child(5) > div").text
+#  end
+#  def sent_home_by
+#  end
+#  def challenge_wins
+#  end
+#  def friends
+#  end
+#  def statistics
+#    @statistics ||= doc.css("#mw-content-text > table").text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '')
+#  end
+#  #@ethnicity ||= doc.css("#mw-content-text > aside > section:nth-child(3) > div:nth-child(4) > div").text
+  
