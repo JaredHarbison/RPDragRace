@@ -154,25 +154,24 @@ class RPDragRace::Queen
   end
 
   def quotes #### this one works great but the regex needs to get a little tighter
-    queen_quotes = doc.xpath('//*[preceding::*[@id="Quotes"] and following::*[@id="Trivia"]]').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') }
-    memorable_quotes =  doc.xpath('//*[preceding::*[@id="Memorable_Quotes"] and following::*[@id="Trivia"]]').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') }
-    #Xqueen_quotes = doc.xpath('//div[preceding-sibling::h2[1]="Quotes"]/text()')
-    #Xmemorable_quotes = doc.xpath('//div[preceding-sibling::h2[1]="Memorable Quotes"]/text()')
-    @quotes = queen_quotes + memorable_quotes
+    memorable_quotes = doc.xpath('//*[preceding::*[@id="Memorable_Quotes"] and following::*[@id="Trivia"]]//following-sibling::li')
+    queen_quotes = doc.xpath('//*[preceding::*[@id="Quotes"] and following::*[@id="Trivia"]]//following-sibling::li').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') }
+    memorable_quotes_C2_A0 =  doc.xpath('//*[preceding::*[@id="Memorable_Quotes.C2.A0"] and following::*[@id="Trivia"]]//following-sibling::li').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') }
+    @quotes = queen_quotes + memorable_quotes + memorable_quotes_C2_A0
   end 
 
+  def trivia 
+    @trivia = doc.xpath('//*[preceding::*[@id="Trivia"] and following::*[@id="Gallery"]]//following-sibling::li').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
+  end 
+
+end
+
+#Xqueen_quotes = doc.xpath('//div[preceding-sibling::h2[1]="Quotes"]/text()')
+    #Xmemorable_quotes = doc.xpath('//div[preceding-sibling::h2[1]="Memorable Quotes"]/text()')
+      #X@trivia = doc.xpath('//div[preceding-sibling::h2[1]="Trivia"]/text()')
+  
 #  def quotes 
 #    queen_quotes = doc.xpath('//*[@id="Quotes"]/following::*/li').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
 #    memorable_quotes = doc.xpath('//*[@id="Memorable_Quotes"]/following::*/li').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
 #    @quotes = queen_quotes + memorable_quotes
 #  end 
-
-  def trivia 
-    @trivia = doc.xpath('//*[preceding::*[@id="Trivia"] and following::*[@id="Gallery"]]').map { |e| e.text.gsub(/[^0-9a-z%&!\n\/(). ]/i, '') } 
-    #X@trivia = doc.xpath('//div[preceding-sibling::h2[1]="Trivia"]/text()')
-  end 
-
-end
-
-
-
